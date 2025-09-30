@@ -1,10 +1,12 @@
 import { useState } from "react";
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+import { useNavigate } from "react-router";
   
-function Login() {
+function Login({ onLogin,redirectPath }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
  
+  const navigate = useNavigate(); // Hook pour naviguer entre les routes
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,6 +17,8 @@ function Login() {
         icon: "success",
         text: "Connection made successfully"
        });
+        onLogin(); // Appel de la fonction de connexion
+        navigate(redirectPath || "/services"); // Redirection vers la route souhaitée
     }
      else {
        Swal.fire({

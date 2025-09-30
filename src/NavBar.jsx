@@ -1,6 +1,6 @@
 import { NavLink } from "react-router";
 
-function NavBar() {
+function NavBar({isAuthenticated,onLogout}) {
     return ( 
         <>
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -17,9 +17,13 @@ function NavBar() {
         <li className="nav-item">
           <NavLink className="nav-link" aria-current="page" to="/contact">Contact</NavLink>
         </li>
+        {
+       isAuthenticated ? (
+          <li><button onClick={onLogout} className='btn btn-light'>Logout</button></li>):
         <li className="nav-item">
-          <NavLink className="nav-link" aria-current="page" to="/services">Services</NavLink>
+          <NavLink className="nav-link active" aria-current="page" to="/login">Login</NavLink>
         </li>
+     }
       </ul>
     </div>
   </div>
